@@ -14,13 +14,17 @@ namespace ConsoleApp1
             g.Add(new Dog("Собака", 412, "Черный", 11, 12));
             g.Add(new Crow("Ворон", 232, "Черный", 240, 19));
             g.Add(new Shark("Акула", 99, "Белый", 55, 13));
+            g.Add(new Iganna("Рептилия", 232, "Зеленый", 2, 2));
+            g.Add(new Dog("Кошка", 41, "Черный", 11, 11));
+            g.Add(new Crow("Воробей", 232, "Черный", 4, 19));
+            g.Add(new Shark("Кит", 312, "Белый", 231, 12));
             while (true)
             {
                 try
                 {
                     Console.WriteLine("1 - Добавить");
                     Console.WriteLine("2 - Удалить");
-                    Console.WriteLine("3 - Вывести весь список");
+                    Console.WriteLine("3 - Вывести весь список отсортированный по названию вида");
                     Console.WriteLine("4 - Годы жизни болльше 5 лет");
                     Console.Write("Ваш выбор: ");
                     n = int.Parse(Console.ReadLine());
@@ -37,7 +41,7 @@ namespace ConsoleApp1
                                 n = int.Parse(Console.ReadLine());
                                 if (n >= 1 && n <= 4)
                                 {
-                                    Console.Write("Название: ");
+                                    Console.Write("Вид: ");
                                     string t = Console.ReadLine();
                                     Console.Write("Численность: ");
                                     int u = int.Parse(Console.ReadLine());
@@ -77,18 +81,18 @@ namespace ConsoleApp1
                                 }
                                 break;
                             }
-                            break;
                         case 2: { Console.Write("Введите номер: "); 
                                 g.RemoveAt(int.Parse(Console.ReadLine())); 
                                 break; }
-                        case 3: { g = g.OrderBy(x => x.Numbers).ToList();
+                        case 3: { g = g.OrderBy(x => x.Name).ToList();
                                 for (int i = 0; i < g.Count; i++) 
                                     Console.WriteLine(g[i].ToString());
                                 break; }
                         case 4:
                             {
                                 g = g.OrderBy(x => x.Lifespan).ToList();
-                                for (int i = g.Count - 1; i > 0; i--)
+                                for (int i = g.Count-1; i > 0; i--)
+                                    if (Convert.ToDouble(g[i].Lifespan) > 5)
                                 Console.WriteLine(g[i].ToString());
 
                                 break; }
